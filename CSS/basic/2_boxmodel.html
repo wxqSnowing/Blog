@@ -5,9 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>盒模型</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .stand-box {
+            width: 100px;
+            height: 200px;
+            padding: 10px 20px 5px;
+            border: 2px solid pink;
+            background-color: powderblue;
+        }
+        
+        .ie-box {
+            margin-top: 20px;
+            box-sizing: border-box;
+            width: 100px;
+            height: 200px;
+            padding: 10px 20px 5px;
+            border: 2px solid yellowgreen;
+            background-color: lightsalmon;
+        }
+    </style>
 </head>
 
 <body>
+    <div>
+        <div class="stand-box">stand-box</div>
+        <div>
+            <h3>标准的盒模型</h3>
+            <ol>
+                <li>内容区域宽100px, 高200px</li>
+                <li>padding的上10px, 右20px, 下5px, 左20px</li>
+                <li>border上右下左都为2px</li>
+            </ol>
+        </div>
+    </div>
+    <div>
+        <div class="ie-box">ie-box</div>
+        <div>
+            <h3>ie盒模型</h3>
+            <ol type="i">
+                <li>内容区域宽50px, 高170px</li>
+                <li>padding的上10px, 右20px, 下5px, 左20px</li>
+                <li>border上右下左都为2px</li>
+            </ol>
+        </div>
+    </div>
 
 </body>
 
