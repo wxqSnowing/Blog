@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>选择器</title>
+    <style>
+        .flexdiv>div {
+            width: 200px;
+            height: 300px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid lightgray;
+        }
+        
+        .flexdiv {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+        
+        p,
+        img {
+            width: 30px;
+            height: 30px;
+            background-color: salmon;
+        }
+        
+        #testid {
+            background-color: skyblue;
+            width: 10px;
+            height: 10px;
+        }
+        
+        .testclass {
+            background-color: yellowgreen;
+            width: 20px;
+            height: 20px;
+        }
+        /* 存在name属性的<p> 元素 */
+        
+        p[name] {
+            background-color: magenta;
+        }
+        /* 存在name属性且name的值为abc的<p> 元素 */
+        
+        p[name="abc"] {
+            background-color: magenta;
+        }
+        /* 存在name属性且name的值以为a开头的<p> 元素 */
+        
+        p[name^='a'] {
+            background-color: green;
+        }
+        /* 存在name属性且name的值以为c结尾的<p> 元素 */
+        
+        p[name$='c'] {
+            background-color: blue;
+        }
+        /* 存在class属性且name的值包含abc<p> 元素 */
+        
+        p[class~='abc'] {
+            background-color: red;
+        }
+        /* 存在name属性且name的值子串有abc<p> 元素 */
+        
+        p[name*='abc'] {
+            background-color: pink;
+        }
+        /* 存在name属性且name的值子串有abc<p> 元素, 区分大小写 */
+        /* p[name*='abc' s] {
+            background-color: pink;
+        } */
+        /* 存在name属性且name的值子串有abc<p> 元素, 不区分大小写 */
+        
+        p[name*='abc' i] {
+            background-color: pink;
+        }
+        
+        .hovertest {
+            background-color: burlywood;
+        }
+        
+        .hovertest:hover {
+            color: pink;
+            background-color: yellowgreen;
+        }
+        
+        .hovertest:active {
+            color: lightblue;
+            background-color: white;
+        }
+        
+        ul :first-child {
+            color: yellowgreen;
+            background-color: pink;
+        }
+        
+        ul :last-child {
+            color: pink;
+            background-color: yellowgreen;
+        }
+        
+        ul :nth-child(odd) {
+            color: pink;
+            background-color: orange;
+        }
+        
+        ul :nth-child(2n) {
+            color: yellowgreen;
+            background-color: lightblue;
+        }
+        
+        ul :nth-child(1) {
+            color: yellowgreen;
+            background-color: red;
+        }
+        
+        #pseudoEle {
+            background-color: white;
+            width: 100px;
+            height: 50px;
+            min-width: 100px;
+            margin-left: 20px;
+            border-radius: 10%;
+            border: 1px solid lightblue;
+        }
+        
+        #pseudoEle::before {
+            content: '';
+            display: inline-block;
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-top: 10px solid transparent;
+            border-right: 10px solid lightblue;
+            border-bottom: 10px solid transparent;
+            margin-left: -20px;
+            margin-top: 15px;
+        }
+        /* #pseudoEle::after {
+            content: '';
+            background-color: lightblue;
+            display: inline-block;
+            width: 5px;
+            height: 10px;
+            border-radius: 0px 10px 10px 0;
+        } */
+    </style>
+</head>
+
+<body>
+    <!--     
+        通配符选择器||
+        元素选择器（标签选择器）|选择标签名都为指定的元素
+        ID选择器|根据id来选择
+        类选择器|根据class来选择
+        属性选择器|拥有特定属性的选择器
+        伪类选择器|特定状态的特定元素
+        伪元素选择器|特定状态的特定元素
+        组合选择器|
+        后代选择器|
+        直接后代选择器|
+        兄弟选择器|
+        相邻兄弟选择器| 
+    -->
+    <div class="flexdiv">
+        <div>
+            <h2>通配符选择器</h2>
+        </div>
+        <div>
+            <h2>元素选择器（标签选择器）</h2>
+            <div>
+                <p></p>
+                <img>
+            </div>
+        </div>
+        <div>
+            <h2>ID选择器</h2>
+            <div>
+                <div id="testid"></div>
+            </div>
+        </div>
+        <div>
+            <h2>类选择器</h2>
+            <div>
+                <div class="testclass"></div>
+            </div>
+        </div>
+        <div>
+            <h2>属性选择器</h2>
+            <div>
+                <p name="abc">123</p>
+                <p name="ABC">123</p>
+                <p class="abc ef" name="abcdf">123</p>
+            </div>
+        </div>
+        <div>
+            <h2>伪类选择器</h2>
+            <a class="hovertest" href="http://www.baidu.com">baidu</a>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+        </div>
+        <div>
+            <h2>伪元素选择器</h2>
+            <div id="pseudoEle"></div>
+        </div>
+        <div>
+            <h2>组合选择器</h2>
+        </div>
+        <div>
+            <h2>后代选择器</h2>
+        </div>
+        <div>
+            <h2>直接后代选择器</h2>
+        </div>
+        <div>
+            <h2>兄弟选择器</h2>
+        </div>
+        <div>
+            <h2>相邻兄弟选择器</h2>
+        </div>
+    </div>
+
+</body>
+
+</html>
