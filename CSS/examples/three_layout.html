@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .container {
+            width: 120px;
+            /* height: 56px; */
+            border: 1px solid blue;
+            margin: 100px;
+            padding-right: 5px;
+            overflow: hidden;
+        }
+        /* .container:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+         */
+        
+        .left {
+            width: 50px;
+            height: 50px;
+            border: 1px solid red;
+            float: left;
+        }
+        
+        .center {
+            width: 50px;
+            height: 20px;
+            border: 1px solid red;
+            float: left;
+        }
+        
+        .right {
+            width: 50px;
+            height: 50px;
+            border: 1px solid red;
+            text-align: right;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>三栏布局，左栏、右栏宽度300px，中间宽度自适应</h2>
+    <div class="container">
+        <div class="block1"><span>块1</span></div>
+        <div class="block2"><span>块2</span></div>
+        <div class="block3"><span>块3</span></div>
+    </div>
+
+
+
+</body>
+
+</html>
