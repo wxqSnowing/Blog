@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .text {
+            /* text-indent: 2em; */
+            text-align: left;
+            text-decoration: line-through solid pink;
+            color: lightblue;
+            text-transform: capitalize;
+            /* direction: rtl; */
+            direction: ltr;
+            background-color: lightcoral;
+        }
+        
+        span+p {
+            width: 100px;
+            height: 200px;
+            color: lightsalmon;
+            background-color: lightcyan;
+            /* overflow: visible; */
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="text">abcdefgh ijklmn opqrst</div>
+        <span .text style="display: block;">123</span>
+        <p>11111111112222222223333334444 1111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111111111111122222222233333344441111111111111111
+        </p>
+    </div>
+
+</body>
+
+</html>
