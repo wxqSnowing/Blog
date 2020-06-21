@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        @keyframes test {
+            /* from {
+                left: 1vw;
+            }
+            to {
+                left: 90vw;
+            } */
+            0% {
+                top: 0px;
+                background-color: pink;
+            }
+            25% {
+                top: 200px;
+                background-color: lightblue;
+            }
+            50% {
+                top: 100px;
+                background-color: pink;
+            }
+            75% {
+                top: 200px;
+                background-color: lightblue;
+            }
+            100% {
+                top: 0px;
+                background-color: yellowgreen;
+            }
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            animation: test 10s ease-in-out 0.1s 10 normal forwards;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
