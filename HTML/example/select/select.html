@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0px;
+            list-style: none;
+        }
+        
+        #container {
+            width: 500px;
+            height: 500px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        ul {
+            width: 500px;
+            height: 50px;
+        }
+        
+        li {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        item {
+            background-color: white;
+            color: black;
+        }
+        
+        .item.active {
+            background-color: pink;
+            color: white;
+        }
+        
+        #content {
+            position: absolute;
+            border: 1px solid black;
+            width: 500px;
+            height: 450px;
+            text-align: center;
+            line-height: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul>
+            <li class="item active">选项卡1</li>
+            <li class="item">选项卡2</li>
+            <li class="item">选项卡3</li>
+        </ul>
+        <div id="content">选项卡1</div>
+    </div>
+    <script type="text/javascript">
+        var oContent = document.getElementById('content');
+        var lilist = document.getElementsByTagName('li');
+        for (let i = 0; i < lilist.length; i++) {
+            (function(j) {
+                lilist[j].onclick = function() {
+                    for (let m = 0; m < lilist.length; m++) {
+                        lilist[m].className = "item";
+                    }
+                    lilist[j].className = "item active";
+                    oContent.innerText = lilist[j].innerText;
+                }
+            })(i)
+        }
+    </script>
+
+</body>
+
+</html>
