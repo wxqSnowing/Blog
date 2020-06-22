@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幻灯片效果</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .box {
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            display: flex;
+        }
+        
+        .left {
+            width: 440px;
+            position: relative;
+        }
+        
+        .right {
+            width: 60px;
+            margin-left: 10px;
+            overflow-y: scroll;
+        }
+        
+        .left ul li {
+            position: absolute;
+        }
+        
+        #sider img {
+            width: 440px;
+            height: 300px;
+        }
+        
+        #thumbs img {
+            width: 60px;
+            height: 50px;
+        }
+        
+        .unshow {
+            display: none;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .unactive {
+            opacity: 0.4;
+        }
+        
+        .active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left">
+            <ul id="sider">
+                <li class="show"><img src="./images/1.jpeg" alt="1"></li>
+                <li class="unshow"><img src="./images/2.jpeg" alt="1"></li>
+                <li class="unshow"><img src="./images/3.jpeg" alt="1"></li>
+                <li class="unshow"><img src="./images/4.jpeg" alt="1"></li>
+                <li class="unshow"><img src="./images/5.jpeg" alt="1"></li>
+                <li class="unshow"><img src="./images/6.jpeg" alt="1"></li>
+            </ul>
+        </div>
+        <div class="right">
+            <div id="thumbs">
+                <img class="active" src="./images/1.jpeg" alt="1">
+                <img class="unactive" src="./images/2.jpeg" alt="2">
+                <img class="unactive" src="./images/3.jpeg" alt="3">
+                <img class="unactive" src="./images/4.jpeg" alt="4">
+                <img class="unactive" src="./images/5.jpeg" alt="5">
+                <img class="unactive" src="./images/6.jpeg" alt="6">
+            </div>
+        </div>
+    </div>
+    <script>
+        var sider = document.getElementById('sider').children;
+        var thumbs = document.getElementById('thumbs').children;
+        for (let i = 0; i < thumbs.length; i++) {
+            (function(i) {
+                // thumbs[i].onclick = function() {
+                //     for (let j = 0; j < thumbs.length; j++) {
+                //         thumbs[j].className = "unactive";
+                //         sider[j].className = "unshow";
+                //     }
+                //     thumbs[i].className = "active";
+                //     sider[i].className = "show";
+                // }
+                thumbs[i].addEventListener('click', function() {
+                    for (let j = 0; j < thumbs.length; j++) {
+                        thumbs[j].className = "unactive";
+                        sider[j].className = "unshow";
+                    }
+                    thumbs[i].className = "active";
+                    sider[i].className = "show";
+                }, false)
+            })(i)
+        }
+    </script>
+
+</body>
+
+</html>
