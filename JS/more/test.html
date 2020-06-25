@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+            background-color: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <div>123</div>
+    <script>
+        function getScrollSize() {
+            if (document.documentElement.scrollWidth) {
+                return {
+                    scrollWidth: document.documentElement.scrollWidth,
+                    scrollHeight: document.documentElement.scrollHeight
+                }
+            } else {
+                return {
+                    scrollWidth: document.body.scrollWidth,
+                    scrollHeight: document.body.scrollHeight
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
