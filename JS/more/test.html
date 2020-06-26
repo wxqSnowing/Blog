@@ -6,37 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
+        /* * {
             margin: 0
-        }
+        } */
         
-        div {
-            width: 100px;
-            height: 100px;
-            margin: 10px auto;
-            text-align: center;
-            line-height: 100px;
+        .grandpa {
+            /* position: absolute; */
+            left: 0px;
+            top: 0px;
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
             background-color: coral;
         }
+        /* .father {
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: cornflowerblue;
+        } */
+        /* .son {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            background-color: cornsilk;
+        } */
     </style>
 </head>
 
 <body>
-    <div>123</div>
+    <div class="grandpa">
+        <div class="father">
+            <div class="son">
+
+            </div>
+        </div>
+    </div>
     <script>
-        function getScrollSize() {
-            if (document.documentElement.scrollWidth) {
-                return {
-                    scrollWidth: document.documentElement.scrollWidth,
-                    scrollHeight: document.documentElement.scrollHeight
-                }
-            } else {
-                return {
-                    scrollWidth: document.body.scrollWidth,
-                    scrollHeight: document.body.scrollHeight
-                }
-            }
-        }
     </script>
 
 </body>
