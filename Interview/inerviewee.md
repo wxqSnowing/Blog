@@ -62,10 +62,10 @@ console.log(son.__proto__);
 
 1\. 在全局情况下，this指向window；
 2\. 在函数中：this可以指向window，this也会指向调用方法的对象
-3\. 在类中，this指向实例化的对象;
+3\. 在类中，this指向实例化的对象; 
 4\. 在事件监听中，this指向触发事件的元素；
 5\. 在严格模式下，this输出undefined；
-6\. apply,call,bind 都能改变this的指向；
+6\. apply, call, bind 都能改变this的指向；
 
 ### call, apply, bind
 
@@ -292,7 +292,7 @@ promise.then(function(successmessgae) {
 
 ### vue的生命周期
 
-1\. 它可以总共分为8个阶段：创建前/后, 载入前/后,更新前/后,销毁前/销毁后。
+1\. 它可以总共分为8个阶段：创建前/后, 载入前/后, 更新前/后, 销毁前/销毁后。
 
 ### vue的双向绑定原理
 
@@ -301,9 +301,12 @@ promise.then(function(successmessgae) {
 ### 组件通信方式
 
 1\. 父组件与子组件传值
+
     - 父组件传给子组件：子组件通过props方法接受数据;
     - 子组件传给父组件：$emit方法传递参数
+
 2\. 非父子组件间的数据传递，兄弟组件传值
+
     - eventBus，就是创建一个事件中心，相当于中转站，可以用它来传递事件和接收事件。项目比较小时，用这个比较合适。
 
 ## 算法相关：冒泡、快排、二叉树遍历、大数相乘（适当刷下剑指offer） 
@@ -319,9 +322,9 @@ promise.then(function(successmessgae) {
 #### 区别
 
 1\. TCP是面向连接的，udp是无连接的即发送数据前不需要先建立链接。 
-2\. TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付。 并且因为tcp可靠，面向连接，不会丢失数据因此适合大数据量的交换。
+2\. TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达; UDP尽最大努力交付，即不保证可靠交付。 并且因为tcp可靠，面向连接，不会丢失数据因此适合大数据量的交换。
 3\. TCP是面向字节流，UDP面向报文，并且网络出现拥塞不会使得发送速率降低（因此会出现丢包，对实时的应用比如IP电话和视频会议等）。 
-4\. TCP只能是1对1的，UDP支持1对1,1对多。 
+4\. TCP只能是1对1的，UDP支持1对1, 1对多。 
 5\. TCP的首部较大为20字节，而UDP只有8字节。
 6\. TCP是面向连接的可靠性传输，而UDP是不可靠的。
 
@@ -343,11 +346,17 @@ promise.then(function(successmessgae) {
 
 ### 缓存
 
+![avatar](./images/hc.jpg)
+
 #### 强缓存
 
-1\. Cache-Control && Expires
+> 强缓存主要是采用响应头中的Cache-Control和Expires两个字段进行控制的。其中Expires是HTTP 1.0中定义的，它指定了一个绝对的过期时期。而Cache-Control是HTTP 1.1时出现的缓存控制字段。Cache-Control:max-age定义了一个最大使用期，就是从第一次生成文档到缓存不再生效的合法生存日期。由于Expires是HTTP1.0时代的产物，因此设计之初就存在着一些缺陷，如果本地时间和服务器时间相差太大，就会导致缓存错乱。这两个字段同时使用的时候Cache-Control的优先级给更高一点。这两个字段的效果是类似的，客户端都会通过对比本地时间和服务器生存时间来检测缓存是否可用。如果缓存没有超出它的生存时间内，客户端就会直接采用本地的缓存。如果生存日期已经过了，这个缓存也就宣告失效。接着客户端将再次与服务器进行通信来验证这个缓存是否需要更新。
+
+1\. Cache-Control（优先级高于 expires） && Expires（一个未来时间，代表请求有效期，没有过期之前都使用当前请求。）
 
 #### 协商缓存
+
+> 强缓存机制如果检测到缓存失效，就需要进行服务器再验证。这种缓存机制也称作协商缓存。浏览器在第一次获取请求的时候，就会在响应头中携带上资源的上次服务器修改日期(Last-Modified)或者资源的标签（Etag)。后续的请求服务器会根据请求头上的If-Modified-Since（对应Last-Modified）和（If-None-Match)字段来判断资源是否失效，一旦资源过期，则服务器会重新发送新的资源到客户端上，从而保证资源的有效性。
 
 1\. Last-Modified & If-Modified-Since
 2\. ETag & If-None-Match
@@ -355,18 +364,26 @@ promise.then(function(successmessgae) {
 ### cookie、sessionStroage和localStorage
 
 1\. 生命周期： 
+
     - Cookie：可设置失效时间，否则默认为关闭浏览器后失效 
     - Localstorage:除非被手动清除，否则永久保存 
     - Sessionstorage：仅在当前网页会话下有效，关闭页面或浏览器后就会被清除 
+
 2\. 存放数据： 
+
     - Cookie：4k左右 
     - Localstorage和sessionstorage：可以保存5M的信息 
+
 3\. http请求
+
     - Cookie：每次都会携带在http头中，如果使用cookie保存过多数据会带来性能问题 
     - 其他两个：仅在客户端即浏览器中保存，不参与和服务器的通信 
+
 4\. 易用性
+
     - Cookie：需要程序员自己封装，原生的cookie接口不友好 
     - 其他两个：即可采用原生接口，亦可再次封装 
+
 5\. 应用场景 
 
     -从安全性来说，因为每次http请求都回携带cookie信息，这样子浪费了带宽，所以cookie应该尽可能的少用，此外cookie还需要指定作用域，不可以跨域调用，限制很多，但是用户识别用户登陆来说，cookie还是比storage好用，其他情况下可以用storage，localstorage可以用来在页面传递参数，sessionstorage可以用来保存一些临时的数据，防止用户刷新页面后丢失了一些参数
@@ -394,6 +411,7 @@ promise.then(function(successmessgae) {
 7\. 避免使用CSS Expression
 8\. 图片预载
 9\. 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div\\\+css布局慢
+
 10. 用setTimeout来避免页面失去响应
 11. 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能
 
