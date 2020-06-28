@@ -36,4 +36,4 @@ function bigMulti(numStr1, numStr2) {
     return final.reverse().join('');
 }
 
-console.log(bigMulti('99', '99'));
+console.log(bigMulti('9999999999', '999999999999'));
