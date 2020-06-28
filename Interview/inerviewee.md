@@ -4,9 +4,9 @@
 
 ### 原型链
 
-> 原型（prototype）指向构造函数的对象
-> 每个被实例化出来的对象的都会有一个与之关联的原型对象都会指向构造函数
-> 每个对象都有一个属性__proto__，指向对象的原型
+- 原型（prototype）是指向构造函数的对象
+- 每个被实例化后的对象，都会有一个与之关联的原型对象
+- 每个对象都有一个属性__proto__，指向对象的原型
 
 ``` javascript
 function Grandapa() {
@@ -29,7 +29,7 @@ console.log(son.__proto__);
 
 #### 注意
 
-1\. 原型的顶端是Object\.prototype
+1\. 原型链的顶端是Object\.prototype
 
 ### 继承
 
@@ -60,12 +60,12 @@ console.log(son.__proto__);
 
 ### this指向
 
-1\. 在全局情况下，this指向window；
-2\. 在函数中：this可以指向window，this也会指向调用方法的对象
-3\. 在类中，this指向实例化的对象; 
-4\. 在事件监听中，this指向触发事件的元素；
-5\. 在严格模式下，this输出undefined；
-6\. apply, call, bind 都能改变this的指向；
+1. 在全局情况下，this指向window；
+2. 在函数中：this可以指向window，this也会指向调用方法的对象
+3. 在类中，this指向实例化的对象; 
+4. 在事件监听中，this指向触发事件的元素；
+5. 在严格模式下，this输出undefined；
+6. apply, call, bind 都能改变this的指向；
 
 ### call, apply, bind
 
@@ -75,8 +75,7 @@ console.log(son.__proto__);
 console.log(Function.prototype.hasOwnProperty('call')); //true
 console.log(Function.prototype.hasOwnProperty('apply')); //true
 console.log(Function.prototype.hasOwnProperty('bind')); //true
-``
-` 
+``` 
 
 #### call
 
@@ -254,9 +253,6 @@ console.log(m(2, 3));
 
 ``` javascript
 //1. 使用new来调用Promise的构造器来进行实例化
-var promise = new Promise(function(resolve, reject) {
-    //异步处理，处理结束后调用resolve或reject
-});
 //2. Promise构造函数包含一个参数和一个带有resolve(解析)和reject(拒绝)两个参数的回调。在回调中执行一些操作（例如异步），如果一切都正常，则调用resolve，否则调用reject
 var promise = new Promise(function(resolve, reject) {
     setTimeout(function() {
@@ -288,10 +284,10 @@ promise.then(function(successmessgae) {
 6\. window\\\.name \\\+ iframe跨域
 7\. postMessage跨域
 
-## 进阶点：建议看些vue的源码，找些分析的博客看看，比如双向绑定实现、组件通信方式
+## Vue
 
 ### vue的生命周期
-
+beforCreate->Create->beforeMount->Mount->beforUpdate->Update->befroeDestroy->Destroy
 1\. 它可以总共分为8个阶段：创建前/后, 载入前/后, 更新前/后, 销毁前/销毁后。
 
 ### vue的双向绑定原理
