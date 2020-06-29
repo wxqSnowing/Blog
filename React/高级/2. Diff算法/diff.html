@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>diff-demo</title>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+    <button id="btn">
+    更新
+  </button>
+    <button id="btn2">
+    恢复
+  </button>
+</body>
+<script src="./diff.js"></script>
+<script>
+    // 第一次插入
+    let container = document.getElementById('container');
+    let vnode1 = h('ul', {
+        id: 'list'
+    }, [
+        h('li', {
+            class: 'item'
+        }, [], 'Item 1'),
+        h('li', {
+            class: 'item'
+        }, [], 'Item 2'),
+        h('li', {
+            class: 'item'
+        }, [], 'Item 3')
+    ])
+
+    patch(container, vnode1);
+    console.log(vnode1)
+
+    // 修改vnode,查看diff效果
+    let btn = document.getElementById('btn');
+    btn.addEventListener('click', function(e) {
+        let vnode2 = h('ul', {
+            id: 'list'
+        }, [
+            h('li', {
+                class: 'item'
+            }, [], 'Item B'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 2'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 3'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 3'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 3')
+        ])
+        patch(vnode1, vnode2);
+        console.log(vnode1)
+    })
+
+    // 修改vnode,查看diff效果
+    let btn2 = document.getElementById('btn2');
+    btn2.addEventListener('click', function(e) {
+        let vnode2 = h('ul', {
+            id: 'list'
+        }, [
+            h('li', {
+                class: 'item'
+            }, [], 'Item 1'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 2'),
+            h('li', {
+                class: 'item'
+            }, [], 'Item 3')
+        ])
+        patch(vnode1, vnode2);
+        console.log(vnode1)
+    })
+</script>
+
+</html>
