@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步加载图片</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        function loadImages(url) {
+            var p1 = new Promise((resolve, reject) => {
+                var image = new Image();
+                image.onload = function() {
+                    resolve(image);
+                }
+                image.onerror = function() {
+                    reject(new Error('Cound not load image at ', url));
+                }
+                image.src = url;
+            });
+            return p1;
+        }
+        let url1 = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg";
+        let url2 = "1.jpg";
+        let url3 = "2.jpg";
+
+        let arr = [url1, url2, url3, url1];
+        arr.map((item, index) => {
+            var p = loadImages(item);
+            p.then((value) => {
+                console.log('success', value);
+                var oDiv = document.getElementsByTagName('div')[0];
+                oDiv.appendChild(value);
+            }).catch((err) => {
+                console.log('error', err)
+            });
+        })
+    </script>
+</body>
+
+</html>

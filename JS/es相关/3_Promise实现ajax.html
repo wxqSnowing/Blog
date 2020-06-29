@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var getJson = function(url) {
+            var promise = new Promise((resolve, reject) => {
+                var client = new XMLHttpRequest();
+                client.open("GET", url);
+                client.onreadystatechange = handler;
+                client.responseType = "json";
+                client.setRequestHeader("Accept", "application/json");
+                client.send();
+
+                function handler() {
+                    if (this.readyState !== 4) {
+                        return;
+                    }
+                    if (this.status === 200) {
+                        resolve(this.response);
+
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                }
+            });
+            return promise;
+        };
+
+        getJson("http://ip-api.com/json/?fields=520191&lang=zh-CN").then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err, '-----');
+        })
+    </script>
+</body>
+
+</html>
