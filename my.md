@@ -1,4 +1,4 @@
-# My
+# 总结
 ## http和https的区别
 |区别点|http|https|备注
 |:----------|:----------|:----------|:----------
@@ -56,8 +56,9 @@
 ## 缓存
 
 ### 强缓存
-
 expiress和cache control
+- Expires 基于服务器端的绝对时间
+- Cache-Control 使用相对时间
 
 ### 协商缓存
 
@@ -76,6 +77,14 @@ etag&&last modified->if_none_mach&&If-Modified-Since
 5. window.name + iframe
 4. ngin代理
 
+## web安全
+1. xss(Cross-Site Scripting, 跨站脚本攻击)
+2. csrf(Cross-Site Request Forgeries, 跨站请求伪造)（被动攻击）
+3. sql注入
+
+## 输入url
+DNS解析 ——TCP连接 ——发送HTTP请求 ——服务器处理请求并返回HTTP报文 ——浏览器解析渲染页面 ——连接结束
+
 ## web性能
 合并请求-预处理-缓存手段-压缩-减少dom操作(使用片段)-图片预加载-缓存dom查找的结果
 1. 降低请求量：合并资源，减少HTTP请求数，minify / gzip 压缩，webP，lazyLoad。
@@ -90,10 +99,40 @@ etag&&last modified->if_none_mach&&If-Modified-Since
 10. 用setTimeout来避免页面失去响应
 11. 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能
 
-## web安全
-1. xss(Cross-Site Scripting, 跨站脚本攻击)
-2. csrf(Cross-Site Request Forgeries, 跨站请求伪造)（被动攻击）
-3. sql注入
+## 浏览器和内核
+| 浏览器   |     内核     |           公司 | 前缀 |
+|---------|:------------|:---------------|:-----|
+| IE      |    trident   |                | -ms- |
+| Chrome  |    webkit    |           谷歌 |-webkit-|
+| Safari  | webkit/blink |           苹果 |-webkit-|
+| Firefox |     gecko    |                |-moz-|
+| Opera   |    presto    | 360、昆仑万维收购 |-o-|
 
-## 输入url
-DNS解析 ——TCP连接 ——发送HTTP请求 ——服务器处理请求并返回HTTP报文 ——浏览器解析渲染页面 ——连接结束
+## html语义化
+1. html结构更清晰: 在没有CSS样式的情况下，页面整体也会呈现很好的结构效果
+2. 代码结构更清晰，代码的可读性好
+3. 便于维护，方便团队开发与维护
+4. 便于SEO
+5. 方便其他设备解析，例如：移动设备，盲人设备
+
+## DOCTYPE
+1. `<!DOCTYPE html>`->document.compatMode->CSS1Compat
+2. -> document.compatMode->BackCompat
+
+## meta
+1. `<meta charset="UTF-8" >` 定义HTML文档的字符集
+2. `<meta http-equiv="expires" content="Jan, 20 Jun 2020 22:33:00 GMT">` 可用于模拟http请求头，可设置过期时间、缓存、刷新
+3. `<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">` 视口，用于控制页面宽高及缩放比例
+
+## html5新特性（需要学习）
+
+1. 语义化标签
+2. 音视频处理
+3. Canvas / WebGL
+4. history API
+5. requestAnimationFrame
+6. 地理位置
+7. WebSocket
+8. Webworks
+
+## 
