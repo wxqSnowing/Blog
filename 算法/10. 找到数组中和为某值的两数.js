@@ -5,12 +5,28 @@
 // 给出的数组为 {2, 7, 11, 15},目标值为9
 // 输出 ndex1=1, index2=2
 
+//时间复杂度n平方
 function twoSum(numbers, target) {
     for (let i = 0; i < numbers.length; i++) {
         for (let j = i + 1; j < numbers.length; j++) {
             if (numbers[i] + numbers[j] === target) {
                 return [i + 1, j + 1];
             }
+        }
+    }
+}
+
+//时间复杂度n
+function find2(arr, target) {
+    let dict = {};
+    for (let i = 0; i < arr.length; i++) {
+        dict[arr[i]] = i;
+    }
+    for (let key in dict) {
+        let num = parseInt(key);
+        let temp = (target - num) + '';
+        if (temp in dict) {
+            return [dict[key], dict[temp]];
         }
     }
 }
