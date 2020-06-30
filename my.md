@@ -28,14 +28,14 @@
 |区别|cookie|session|localStorage
 |:----------|:----------|:----------|:----------
 |生命周期|有一定的事件|本次会话，关闭浏览器会话结束|可持久性的存储
-|大小|比较小4k|5M|5M
+|大小|比较小, 4k|5M|5M
 |保存位置|浏览器上|服务端|浏览器本地
 
 ## seesion机制
-<!-- 1. 每次请求，服务器判断本次请求是否有sessionID
-                            有->找自己与之对应的session对象->
-                            没有->自己创建一个session对象，并把sessionId传出去，浏览器的cookie把session传过来，下一次请求使用
-                            -- -->
+1. 每次请求，服务器判断本次请求是否有sessionID
+2. 有->找自己与之对应的session对象
+3. 没有->自己创建一个session对象，并把sessionId传出去，浏览器的cookie把session传过来，下一次请求使用
+
 
 ## 状态码
 |状态码|含义||
@@ -54,15 +54,21 @@
 |503|Service Unavailable|服务器资源尚未准备好处理当前请求|
 
 ## 缓存
+
 ### 强缓存
+
 expiress和cache control
+
 ### 协商缓存
+
 etag&&last modified->if_none_mach&&If-Modified-Since
+
 
 ## 跨域
 ### 同源策略
 协议+域名+端口一致
-### 跨域方案
+
+### 跨域解决方案
 1. jsonp跨域；
 2. Cors跨资源共享跨域;
 3. document.domain + ifram跨域，设置子ifram的document.domain与父亲相等
@@ -91,9 +97,3 @@ etag&&last modified->if_none_mach&&If-Modified-Since
 
 ## 输入url
 DNS解析 ——TCP连接 ——发送HTTP请求 ——服务器处理请求并返回HTTP报文 ——浏览器解析渲染页面 ——连接结束
-
-
-
-
-
-
