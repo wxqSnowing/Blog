@@ -1,8 +1,3 @@
-# 函数柯里化（Currying）
-
-> 把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。
-
-```javascript
 // function add(a, b) {
 //     return a + b
 // }
@@ -19,17 +14,17 @@ function curing(a) {
     }
 }
 
-console.log(curing(1)(2)(3)(4)); //10
-```
+// console.log(curing(1)(2)(3)(4));
 
-## 例子
-```javascript
+// 实现一个add方法，使计算结果能够满足如下预期：
+// add(1)(2)(3) = 6;
+// add(1, 2, 3)(4) = 10;
+// add(1)(2)(3)(4)(5) = 15;
+
 function add() {
     // 第一次执行时，定义一个数组专门用来存储所有的参数
     var _args = Array.prototype.slice.call(arguments);
     // console.log('----', _args);
-
-    
     // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
     var _adder = function() {
         _args.push(...arguments);
@@ -49,8 +44,3 @@ function add() {
 console.log(add(1)(2)(3)().toString());
 console.log(add(1, 2, 3)(4)().toString());
 console.log(add(1)(2)(3)(4)(5)().toString());
-```
-
-
-
-
