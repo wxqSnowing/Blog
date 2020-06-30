@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流函数</title>
+</head>
+
+<body>
+    <input id="input" type="text">
+    <script>
+        var oInput = document.getElementById('input');
+        // oInput.onkeyup = test; //只要有输入就会执行，性能不好
+        function test() {
+            console.log(this.value);
+        }
+
+        function throttle(fn, delay) {
+            var t = null;
+            var old = new Date().getTime();
+            return function() {
+                var cur = new Date().getTime();
+                clearTimeout(t);
+                if (cur - old >= delay) {
+                    test.apply(this);
+                    old = cur;
+                } else {
+                    t = setTimeout(() => {
+                        test.apply(this);
+                    }, delay)
+                }
+            }
+        }
+        oInput.onkeyup = throttle(test, 1000);
+    </script>
+</body>
+
+</html>

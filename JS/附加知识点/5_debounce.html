@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖函数</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div>鼠标移入</div>
+    <input id="input" />
+    <script>
+        function testIn() {
+            console.log("鼠标移入成功");
+        }
+        var oDiv = document.getElementsByTagName('div')[0];
+        // oDiv.onmouseover = testIn; //这种情况在鼠标移动到div中就会一直执行testIn回调函数，这样性能大打折扣，所以需要引入防抖函数
+        // oDiv.onmouseover = debounce(testIn, 1000); //使用防抖函数
+        // function debounce(fn, ms) {
+        //     var t = null;
+        //     var debounced = function() {
+        //         clearTimeout(t);
+        //         t = setTimeout(() => {
+        //             testIn.apply(this);
+        //         }, ms);
+        //     }
+        //     return debounced;
+        // }
+        oDiv.onmouseover = debounce(testIn, 1000, true);
+        //假如需要首次执行不做防抖操作
+        function debounce(fn, ms, execnow) {
+            var t = null;
+            var res;
+            var debounced = function() {
+                var args = arguments;
+                if (execnow) {
+                    if (t === null) {
+                        console.log("首次执行");
+                        res = testIn.apply(this, args);
+                        t = setTimeout(() => {}, ms);
+                    } else {
+                        clearTimeout(t);
+                        t = setTimeout(() => {
+                            res = fn.apply(this, args);
+                        }, ms)
+                    }
+                } else {
+                    clearTimeout(t);
+                    t = setTimeout(() => {
+                        res = fn.apply(this, args);
+                    }, ms)
+                }
+                return res;
+            }
+            return debounced;
+        }
+        var oInput = document.getElementsByTagName('input')[0];
+
+        function getValue(e) {
+            console.log(this.value);
+            // console.log(e.target.value);
+            return "hello";
+        }
+        oInput.onkeyup = debounce(getValue, 1000, false);
+    </script>
+
+</body>
+
+</html>
