@@ -42,12 +42,15 @@
 // var someArray = arr5.some((item, index, arr) => { return (index + 1) < arr.length })
 // console.log(someArray); //true
 
-var arr6 = [1, 2, 3, 4];
-var reduceArr = arr6.reduce(function(pre, cur, index, arr) {
-    return pre * cur;
-});
-console.log(reduceArr); //24
-var reduceArr1 = arr6.reduce(function(pre, cur, index, arr) {
-    return pre + cur;
-});
-console.log(reduceArr1); //10
+// var arr6 = [1, 2, 3, 4];
+// var reduceArr = arr6.reduce(function(pre, cur, index, arr) {
+//     return pre * cur;
+// });
+// console.log(reduceArr); //24
+// var reduceArr1 = arr6.reduce(function(pre, cur, index, arr) {
+//     return pre + cur;
+// });
+// console.log(reduceArr1); //10
+
+
+console.log('abcdfg'.indexOf('a'));

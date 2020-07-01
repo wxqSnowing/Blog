@@ -17,6 +17,17 @@ function twoSum(numbers, target) {
 }
 
 //时间复杂度n
+function find(numbers, target) {
+    for (let i = 0; i < numbers.length; i++) {
+        let temp = target - numbers[i];
+        let index = numbers.indexOf(temp);
+        if (index != i) {
+            return [i, index];
+        }
+    }
+}
+
+//时间复杂度n
 function find2(arr, target) {
     let dict = {};
     for (let i = 0; i < arr.length; i++) {
