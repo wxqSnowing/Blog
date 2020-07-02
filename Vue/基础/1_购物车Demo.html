@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用计算属性、指令等知识开发购物车</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .wrapper {
+            border: 1px solid lightgray;
+        }
+        
+        #root>div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        table {
+            width: 1000px;
+            /* height: 460px; */
+        }
+        
+        table>thead>tr {
+            background-color: lightblue;
+            border: 1px solid lightgray;
+            height: 80px;
+        }
+        
+        table>tbody>tr {
+            border-top: 1px solid lightblue;
+            height: 60px;
+            background-color: lightgray;
+        }
+        
+        .remove-btn {
+            width: 100px;
+            height: 30px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            /* opacity: 0.6; */
+        }
+        
+        .remove-btn:hover {
+            font-size: 1.1em;
+        }
+        
+        .little {
+            width: 30px;
+            height: 20px;
+            border: 1px solid lightblue;
+            background-color: white;
+            border-radius: 10px;
+        }
+        
+        .little-left {
+            margin-right: 10px;
+        }
+        
+        .little-right {
+            margin-left: 10px;
+        }
+        
+        button {
+            outline: none;
+        }
+        
+        button:hover {
+            background-color: lightblue;
+        }
+        
+        label {
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <table v-if="products.length" class="wrapper">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>商品名称</th>
+                        <th>商品单价</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(product,index) in products">
+                        <th>{{index+1}}</th>
+                        <th v-for="(item, index) in product"><button v-if="index=='num'" class="little little-left" @click="minus(product)">-</button>{{item}}<button v-if="index=='num'" class="little little-right" @click="add(product)">+</button></th>
+                        <th><button @click="remove(product,index)" class="remove-btn">移除</button></th>
+                    </tr>
+                </tbody>
+            </table>
+            <label for="" v-if="products.length">{{total}}</label>
+            <label for="" v-else>购物车为空！</label>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#root',
+            data: {
+
+                products: [{
+                    name: 'iphone 6',
+                    price: 5188,
+                    num: 1
+                }, {
+                    name: 'iphone 7',
+                    price: 6188,
+                    num: 1
+                }, {
+                    name: 'iphone 8',
+                    price: 7188,
+                    num: 1
+                }, {
+                    name: 'iphone X',
+                    price: 9188,
+                    num: 1
+                }]
+            },
+            beforeCreate() {
+
+            },
+            created() {
+
+            },
+            beforeMount() {
+
+            },
+            mounted() {
+
+            },
+            beforeUpdate() {
+
+            },
+            updated() {
+
+            },
+            methods: {
+                add: function(item) {
+                    let index = this.products.indexOf(item);
+                    if (index !== -1) {
+                        this.products[index].num++
+                    }
+                },
+                minus: function(item) {
+                    let index = this.products.indexOf(item);
+                    if (index !== -1) {
+                        this.products[index].num--
+                    }
+                    if (this.products[index].num === 0) {
+                        this.products.splice(index, 1);
+                    }
+                },
+                remove: function(product, index) {
+                    if (index <= this.products.length - 1)
+                        this.products.splice(index, 1);
+
+                }
+            },
+            computed: {
+                total: function() {
+                    let res = 0;
+                    if (this.products.length == 0) {
+                        return `总价RMB: ${res}`;
+                    }
+                    if (this.products.length == 1) {
+                        return `总价RMB: ${this.products[0].price*this.products[0].num}`;
+                    }
+                    res = this.products.reduce((pre, cur) => {
+                        return typeof(pre) === 'object' ? (pre.price * pre.num + (cur.price * cur.num)) : pre + (cur.price * cur.num);
+                    })
+                    return `总价RMB: ${res}`;
+                }
+            },
+            filters: {
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>

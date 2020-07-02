@@ -6,14 +6,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue基础知识学习</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .test {
+            width: 50px;
+            height: 20px;
+            border-radius: 20px;
+            background-color: pink;
+            border: none;
+            outline: none;
+        }
+        
+        .classname1 {
+            background-color: yellowgreen;
+            font-size: 30px;
+        }
+        
+        .classname2 {
+            color: white;
+        }
+        
+        .classname3 {
+            color: pink;
+        }
+    </style>
 </head>
 
 <body>
     <div id="root">
+        {{date| formatDate}}
+        <h3 :style="{'color': color, 'fontSize': fontsize}">内联样式绑定</h3>
+        <h3 :class="className">class绑定---1---直接使用类名</h3>
+        <h3 :class="{'classname3': className3V}">class绑定---2---使用对象</h3>
+        <h3 :class="[className1, className2]">class绑定---3---直接使用类名数组</h3>
+        <h3 :class="[className3V?className1:'', className2]">class绑定---4---三目运算动态绑定类</h3>
+        <label>{{message}}</label>
+        <label>{{count}}</label>
+        <label>{{computedMessage}}</label>
+        <button @click="add" :style="btnClass">加1</button>
+        <ul>
+            <li v-for="item in films">{{item.name}}</li>
+        </ul>
+        <div v-if="div1">div1</div>
+        <div v-else-if="div2">div2</div>
+        <div v-else="div3">div3</div>
+        <div v-html="vhtmltest"></div>
+        <a :href="url">baidu</a>
+        <label>{{three?'okokok':'nonono'}}</label>
+        <label for="">{{[1,2,3].reverse().join('****')}}</label> {{fullName}}
     </div>
 
     <script>
-        var vm = new Vue({})
+        var app = new Vue({
+            el: '#root',
+            data: {
+                className3V: true,
+                color: 'lightblue',
+                fontsize: '30px',
+                // date: new Date(),
+                message: 'data message',
+                className: 'classname1',
+                className1: 'classname1',
+                className2: 'classname2',
+                count: 2,
+                div1: false,
+                div2: false,
+                div3: true,
+                three: false,
+                firstName: 'wu',
+                secondName: 'xueqin',
+                url: 'https://www.baidu.com',
+                vhtmltest: '<label>vhtml123</label>',
+                btnClass: {
+                    width: '50px',
+                    height: '30px',
+                    border: 'none',
+                    borderRadius: '20px',
+                    backgroundColor: 'pink',
+                    outline: 'none'
+                },
+                films: [{
+                    name: '七月与安生1',
+                    age: 1
+                }, {
+                    name: '七月与安生2',
+                    age: 2
+                }, {
+                    name: '七月与安生3',
+                    age: 3
+                }, ]
+            },
+            beforeCreate: function() {
+                console.log('beforeCreate');
+            },
+            created: function() {
+                console.log('created');
+            },
+            beforeMount() {
+                console.log('beforeMount');
+            },
+            mounted() {
+                console.log('mounted');
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate');
+            },
+            updated() {
+                console.log('updated');
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy');
+            },
+            destroyed: function() {
+                console.log('destroyed');
+            },
+            computed: {
+                fullName: {
+                    get: function() {
+                        return this.firstName + this.secondName;
+                    },
+                    set: function(val) {
+                        this.fullName = val;
+                    }
+                },
+                computedMessage: function() {
+                    console.log('computedMessage doing');
+                    return this.count + 1;
+                },
+                date: function() {
+                    let t = null;
+                    clearTimeout(t)
+                    t = setInterval(() => {
+                        console.log('123');
+                    }, 5000);
+                    return new Date();
+                }
+            },
+            methods: {
+                add: function() {
+                    this.count += 1;
+                    console.log('click----', this.count);
+                }
+            },
+            filters: {
+                formatDate: function(value) {
+                    console.log('use filter-formatDate');
+                    return value.getFullYear() + '年' + (value.getMonth() + 1) + '月' + value.getDay() + '日' + value.getHours() + ':' + value.getMinutes() + ':' + value.getSeconds() + ':' + value.getMilliseconds();
+                }
+            }
+        })
     </script>
 
 </body>
