@@ -210,6 +210,7 @@ console.log(m(2, 3));
 4. splice(index, length)从索引为index开始删除长度为length个数，会改变原始数组
 5. slice(index, length)从索引为index开始选择长度为length个数出来，不改变原来的数组
 6. join('连接符号') 连接数组，使用连接符号来连接数组变成字符串
+7. indexOf('a') 寻找字符a在数组中的下标
 
 
 ### 判断是否为数组

@@ -59,12 +59,12 @@
         p[name$='c'] {
             background-color: blue;
         }
-        /* 存在class属性且name的值包含abc<p> 元素 */
+        /* 存在class属性且name的值有一个是abc<p> 元素 */
         
         p[class~='abc'] {
             background-color: red;
         }
-        /* 存在name属性且name的值子串有abc<p> 元素 */
+        /* 存在name属性且name的值的子串有abc<p> 元素 */
         
         p[name*='abc'] {
             background-color: pink;

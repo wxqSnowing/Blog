@@ -1,7 +1,7 @@
 # margin
 
 ## margin的大小问题
-1. 当两元素水平方向时，margin为左边右margin+右边左margin相加；
+1. 当两元素水平方向时，margin为左边盒子的右margin+右边盒子的左margin相加；
 2. 当竖直方向时，margin为上面元素下margin和下面元素上margin中的最大值；
 3. 当内容为空且设置有上下margin时，元素高度为上下margin中的最大值;
 
