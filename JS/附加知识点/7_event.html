@@ -71,6 +71,9 @@
         //先捕获->目标-》冒泡
         //1.捕获阶段是一层一层往内到目标；
         //2.冒泡阶段是从目标阶段然后一层一层往上
+        //备注:
+        // e.preventDefault();
+        // e.stopPropagation();
 
 
         //DOM 0的写法
@@ -96,7 +99,7 @@
 
         //DOM 2事件处理模型，addEventListener
         wrapper.addEventListener('click', function() {
-            console.log('wrapper冒泡')
+            console.log('wrapper冒泡');
         }, false);
         outer.addEventListener('click', function() {
             console.log('outer冒泡')
@@ -122,6 +125,7 @@
             var e = e || window.event;
             console.log(e);
             console.log(e.target);
+
             // console.log(e.srcElement);
         }
 
