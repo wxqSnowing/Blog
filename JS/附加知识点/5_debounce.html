@@ -47,7 +47,7 @@
                 if (execnow) {
                     if (t === null) {
                         console.log("首次执行");
-                        res = testIn.apply(this, args);
+                        res = fn.apply(this, args);
                         t = setTimeout(() => {}, ms);
                     } else {
                         clearTimeout(t);
