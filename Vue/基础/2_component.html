@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+        <!-- 组件的注册 -->
+        <ul>
+            <!-- <my_item v-for="item in mylist" v-bind:content="item"></my_item> -->
+            <list-item v-for="item in mylist" v-bind:content="item"></list-item>
+        </ul>
+        <!-- 组件通信 -->
+        <!-- 子->父 -->
+        <!-- 方法一：使用自定义事件，子组件通过$emit来触发，父组件$on来监听 -->
+        <child-comp1 @myinput="fatherGet1"></child-comp1>
+        <div>{{message}}</div>
+        <child-comp2 v-model="fatherGet2Value"></child-comp2>
+        <div>{{fatherGet2Value}}</div>
+        <comp-a></comp-a>
+        <comp-b></comp-b>
+    </div>
+    <script>
+        //组件注册一：全局注册
+        Vue.component('my_item', {
+            //1. 静态传值
+            // template: "<li>hello</li>"
+            //2. 动态传值
+            props: ['content'],
+            template: "<li>{{content}}</li>"
+        });
+        // 组件注册二：局部注册-----组件的定义
+        var ListItem = {
+            props: ['content'],
+            template: "<li>{{content}}</li>"
+        }
+
+        // 组件通信：父->子，使用props
+
+        //组件通信：子->父
+        //方法一、使用自定义事件：子组件使用$emit()来触发事件，父组件用$on()来监听子组件的事件
+        Vue.component('child-comp1', {
+            props: ['message'],
+            template: '<input @keyup="childInput"></input>',
+            data: function() {
+                return {
+                    inputValue: '',
+                }
+            },
+            methods: {
+                childInput: function(e) {
+                    this.inputValue = e.target.value;
+                    this.$emit('myinput', this.inputValue);
+                }
+            }
+        });
+        //方法二、使用v-model
+        Vue.component('child-comp2', {
+            props: ['message'],
+            template: '<input @keyup="childInput"></input>',
+            data: function() {
+                return {
+                    inputValue: '',
+                }
+            },
+            methods: {
+                childInput: function(e) {
+                    this.inputValue = e.target.value;
+                    //当父组件通过v-model来获取值的时候，子组件默认通过默认触发input事件来传递值，$emit('input', 值)
+                    this.$emit('input', this.inputValue);
+                }
+            }
+        });
+        //组件通信：非父子组件通信-1. 兄弟组件和跨多级组件
+        //方法一: 在vue1.x中，使用的$dispatch()来向上级派发事件，使用$broadcast()来向下级广播事件。由于不方便管理，这个方法在vue2.0中被废弃了
+        //在vue2.0中使用一个空的Vue实例作为中央事件总线bus，也就是一个中介，类比生活中  租房者-中介(bus)-房子所有者关系，发生租房事件的过程
+        var bus = new Vue();
+        Vue.component('comp-a', {
+            template: '<button @click="add" :style="style">组件a</button>',
+            data: function() {
+                return {
+                    count: 0,
+                    style: {
+                        width: '100px',
+                        height: '20px',
+                        border: 'none',
+                        outline: 'none',
+                        borderRadius: '10px',
+                        backgroundColor: 'pink'
+                    }
+                }
+            },
+            methods: {
+                add: function(e) {
+                    this.count++;
+                    console.log(this.count);
+                    bus.$emit('on-count', this.count);
+                }
+            }
+        });
+        Vue.component('comp-b', {
+            template: '<label>我是组件b，监听到组件a的变化{{countter}} </label>',
+            data: function() {
+                return {
+                    countter: 0
+                }
+            },
+            mounted() {
+                var _this = this;
+                bus.$on('on-count', function(msg) {
+                    _this.countter = msg;
+                })
+            },
+        })
+        var vm = new Vue({
+            el: document.getElementById('root'),
+            data: {
+                message: 'nihao',
+                mylist: [1, 2, 3, 4, 5],
+                fatherGet2Value: '',
+                countter: 0,
+            },
+            //组件注册二：局部注册-----组件局部注册
+            components: {
+                'list-item': ListItem,
+            },
+            methods: {
+                fatherGet1: function(v) {
+                    this.message = v;
+                }
+            },
+            mounted() {
+                var _this = this;
+                bus.$on('on-count', function(msg) {
+                    _this.countter = msg;
+                })
+            },
+            computed: {
+
+            },
+            filters: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
