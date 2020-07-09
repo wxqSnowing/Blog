@@ -7,9 +7,11 @@ import MyHook from './pages/MyHook'
 
 ReactDOM.render(
   <React.StrictMode>
+      <>
       {/* <FatherChild></FatherChild> */}
       {/* <UserListConteiner></UserListConteiner> */}
       <MyHook></MyHook>
+      </>
   </React.StrictMode>,
   document.getElementById('root')
 );
