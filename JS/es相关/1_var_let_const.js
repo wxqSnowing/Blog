@@ -46,3 +46,35 @@ for (let i = 0; i < 5; i++) {
     console.log(a); //[ 1, <2 empty items>, 0 ]
     // a = [1, 2]; //报错，因为相对于重新赋予了一个指针
 }
+
+
+
+
+
+
+function f() {
+    console.log('I am outside');
+}
+
+(function() {
+    if (true) {
+        function f1() {
+            console.log('I am inside');
+        }
+        // f1();
+    }
+    f1();
+    //下面会报错
+    //var f2 = undefined;相当于定于了一个f2=undefined的变量
+    if (false) {
+        function f2() {
+            console.log('I am inside');
+        }
+        // f2();
+    }
+    console.log(typeof f2);
+    if (f2) {
+        f2();
+    }
+    //f2
+})()
