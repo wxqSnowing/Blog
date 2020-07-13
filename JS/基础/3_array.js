@@ -51,6 +51,3 @@
 //     return pre + cur;
 // });
 // console.log(reduceArr1); //10
-
-
-console.log('abcdfg'.indexOf('a'));
