@@ -9,3 +9,4 @@ function findMedianSortedArrays(A, B) {
         return (newArr[midIndex - 1] + newArr[midIndex]) / 2
     }
 }
+console.log(findMedianSortedArrays([7, 8, 9], [1, 2, 3, 4, 5, 6]))
