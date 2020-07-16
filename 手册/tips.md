@@ -61,7 +61,6 @@ expiress和cache control
 - Cache-Control 使用相对时间
 
 ### 协商缓存
-
 etag&&last modified->if_none_mach&&If-Modified-Since
 
 
@@ -127,7 +126,7 @@ DNS解析 ——TCP连接 ——发送HTTP请求 ——服务器处理请求并�
 ## html5新特性（需要学习）
 
 1. 语义化标签
-2. 音视频处理
+2. 音视频处理, video, audio
 3. Canvas / WebGL
 4. history API
 5. requestAnimationFrame

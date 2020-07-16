@@ -393,14 +393,17 @@ beforCreate->Create->beforeMount->Mount->beforUpdate->Update->befroeDestroy->Des
 ### 状态码
 
 > 200 OK
-> 301 Moved Permanently 永久移动，请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替 
+> 301 Moved Permanently 永久移动，请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到响应返回的location中新URI。今后任何新的请求都应使用新的URI代替 
 > 302 临时移动
 > 304 NotModefied
 > 400 Bad Request 客户端请求的语法错误，服务器无法理解 
+> 401 Autherizan 需要身份验证
+> 403 Forbidden 请求拒绝
 > 404 Notfound 服务器无法根据客户端的请求找到资源（网页）
 > 405 请求方法不存在或不支持
 > 500 Internal Server Error  服务器内部错误，无法完成请求 
 > 502  Bad Gateway
+> 503 Serverce Unavailable
 
 ## web性能优化
 
